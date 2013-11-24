@@ -12,16 +12,18 @@
   <img name="elvislogo" src="elvislogo.gif" width="229" height="32" border="0" alt="Make Me Elvis" />
 
 <p><b>Add email to mailing list</b></p>
-<form method="post" action="addemail.php">
+<form class="addform" method="post" action="addemail.php">
 	<label for="firstname">First name:</label>
 	<input type="text" id="firstname" name="firstname" /><br />
 	<label for="lastname">Last name:</label>
 	<input type="text" id="lastname" name="lastname" /><br />
 	<label for="email">Email:</label>
 	<input type="text" id="email" name="email" /><br />
-	<input type="submit" name="submit" value="Submit" />
+	<input class="submitbtn" type="submit" name="submit" value="Submit" />
 </form>
-
+<script type="text/javascript">
+	$(".submitbtn").click.($(".addform").after("Customer Added"));
+</script>
 <p><b>Remove email from mailing list</b></p>
 <form method="post" action="removeemail.php">
 	<label for="firstname">Remove by First name:</label>
@@ -30,7 +32,7 @@
 	<input type="text" id="lastname" name="lastname" /><br />
 	<label for="email">Remove by Email:</label>
 	<input type="text" id="email" name="email" /><br />
-	<input type="submit" name="submit" value="Remove" />
+	<input itype="submit" name="submit" value="Remove" />
 </form>
 
 </body>
