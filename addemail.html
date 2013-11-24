@@ -1,0 +1,37 @@
+<html>
+<head>
+<title>Elvis Store</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body>
+<p>Enter your first name, last name, and email to be\n
+	added to the <b>Make me Elvis</b> mailing list </p>
+
+  <img src="blankface.jpg" width="161" height="350" alt="" style="float:right" />
+  <img name="elvislogo" src="elvislogo.gif" width="229" height="32" border="0" alt="Make Me Elvis" />
+
+<p><b>Add email to mailing list</b></p>
+<form method="post" action="addemail.php">
+	<label for="firstname">First name:</label>
+	<input type="text" id="firstname" name="firstname" /><br />
+	<label for="lastname">Last name:</label>
+	<input type="text" id="lastname" name="lastname" /><br />
+	<label for="email">Email:</label>
+	<input type="text" id="email" name="email" /><br />
+	<input type="submit" name="submit" value="Submit" />
+</form>
+
+<p><b>Remove email from mailing list</b></p>
+<form method="post" action="removeemail.php">
+	<label for="firstname">Remove by First name:</label>
+	<input type="text" id="firstname" name="firstname" /><br />
+	<label for="lastname">Remove by Last name:</label>
+	<input type="text" id="lastname" name="lastname" /><br />
+	<label for="email">Remove by Email:</label>
+	<input type="text" id="email" name="email" /><br />
+	<input type="submit" name="submit" value="Remove" />
+</form>
+
+</body>
+</html>
