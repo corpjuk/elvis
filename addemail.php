@@ -19,8 +19,17 @@
 	$dbc = mysqli_connect('localhost', 'corpjuk', 'grools2!', 'elvis_store')
 		or die('Error connecting to MySQL server.');
 
+	//$query = "INSERT INTO emailList(firstName, lastName, email)" .
+	//	"VALUES ('$first_name', '$last_name', '$email')";
+
+	if(empty($first_name) || empty($last_name) || empty($email)) {
+		echo 'Please fill out entire form.<br />';
+	}
+
+	else {
 	$query = "INSERT INTO emailList(firstName, lastName, email)" .
 		"VALUES ('$first_name', '$last_name', '$email')";
+	}
 
 	mysqli_query($dbc, $query)
 		or die('Query Error');

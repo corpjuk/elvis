@@ -1,34 +1,52 @@
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-	<title>Remove Email PHP</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Make Me Elvis - Remove Email</title>
+  <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 <body>
-	<h2> h2 in remove email php (demo)</h2>
+  <img src="blankface.jpg" width="161" height="350" alt="" style="float:right" />
+  <img name="elvislogo" src="elvislogo.gif" width="229" height="32" border="0" alt="Make Me Elvis" />
+  <p>Select an email address to delete from the email list and click Remove.</p>
+
+<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
 
 <?php
-
-	$first_name = $_POST['firstname'];
-	$last_name = $_POST['lastname'];
-	$email = $_POST['email'];
-
-	//$dbc is the variable to connect to the SQL DB
+	
 	$dbc = mysqli_connect('localhost', 'corpjuk', 'grools2!', 'elvis_store')
 		or die('Error connecting to MySQL server.');
 
-	$query = "DELETE FROM emailList WHERE email = '$email' || firstName = '$first_name' || lastName = '$last_name'";
+	if (isset($_POST['submit'])) {
+		foreach ($_POST['todelete'] as $delete_id) {
+			$query = "DELETE FROM emailList WHERE id = $delete_id";
+			mysqli_query($dbc, $query)
+				or die('Error querying DB');
+		}
+		echo 'Customer(s) removed.<br />';
+	}
 
-	mysqli_query($dbc, $query)
-		or die('Query Error');
 
-	//$row = mysqli_fetch_array($result);
+	$query = "SELECT * FROM emailList";
 
-		echo 'Removed Customer';
+	$result = mysqli_query($dbc, $query);
+
+	while ($row = mysqli_fetch_array($result)) {
+		echo '<input type="checkbox" value="' . $row['id'] . '" name="todelete[]" />';
+		echo $row['firstName'];
+		echo ' ' . $row['lastName'];
+		echo ' ' . $row['email'];
+		echo '<br />';
+	}
 
 	mysqli_close($dbc);
 
-	//echo 'Customer Added';
 
 ?>
+
+	<input type="submit" name="submit" value="Remove" />
+</form>
 
 </body>
 
